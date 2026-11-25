@@ -1,0 +1,491 @@
+{
+  "views": [
+    {
+      "title": "Kitchen",
+      "path": "home",
+      "type": "sections",
+      "theme": "Atomic Age Utility",
+      "max_columns": 3,
+      "dense_section_placement": false,
+      "sections": [
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "type": "heading",
+              "heading": "Automatic Programs",
+              "heading_style": "title",
+              "icon": "mdi:tune-variant"
+            },
+            {
+              "type": "shortcut",
+              "label": "Bright",
+              "icon": "mdi:white-balance-sunny",
+              "tap_action": {
+                "action": "perform-action",
+                "perform_action": "input_boolean.turn_on",
+                "target": {
+                  "entity_id": "input_boolean.lab_light"
+                }
+              },
+              "grid_options": {
+                "columns": 6,
+                "rows": 1
+              }
+            },
+            {
+              "type": "shortcut",
+              "label": "All Off",
+              "icon": "mdi:power",
+              "tap_action": {
+                "action": "perform-action",
+                "perform_action": "input_boolean.turn_off",
+                "target": {
+                  "entity_id": "input_boolean.lab_light"
+                }
+              },
+              "grid_options": {
+                "columns": 6,
+                "rows": 1
+              }
+            },
+            {
+              "type": "shortcut",
+              "label": "Assist",
+              "icon": "mdi:message-processing-outline",
+              "tap_action": {
+                "action": "assist"
+              },
+              "grid_options": {
+                "columns": "full",
+                "rows": 1
+              }
+            },
+            {
+              "type": "gauge",
+              "entity": "input_number.lab_temperature",
+              "name": "Kitchen temperature",
+              "needle": true,
+              "min": 45,
+              "max": 95,
+              "grid_options": {
+                "columns": "full",
+                "rows": 3
+              }
+            }
+          ]
+        },
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "type": "heading",
+              "heading": "Room Controls",
+              "heading_style": "title",
+              "icon": "mdi:knob"
+            },
+            {
+              "type": "tile",
+              "entity": "input_boolean.lab_light",
+              "name": "All kitchen lights",
+              "icon": "mdi:lightbulb",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "icon_tap_action": {
+                "action": "toggle"
+              },
+              "grid_options": {
+                "columns": "full"
+              }
+            },
+            {
+              "type": "shortcut",
+              "label": "Lighting circuits",
+              "icon": "mdi:lightbulb-group-outline",
+              "tap_action": {
+                "action": "navigate",
+                "navigation_path": "/atomic-age-utility/lights"
+              },
+              "grid_options": {
+                "columns": "full",
+                "rows": 1
+              }
+            },
+            {
+              "type": "shortcut",
+              "label": "Climate",
+              "icon": "mdi:thermometer",
+              "tap_action": {
+                "action": "navigate",
+                "navigation_path": "/atomic-age-utility/climate"
+              },
+              "grid_options": {
+                "columns": "full",
+                "rows": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "type": "heading",
+              "heading": "House Conditions",
+              "heading_style": "title",
+              "icon": "mdi:shield-home-outline"
+            },
+            {
+              "type": "markdown",
+              "content": "{% if is_state('input_boolean.lab_alert', 'on') %}\n- **Home alarm** · Pending\n- **Doors** · Open\n{% else %}\n- **Home alarm** · Disarmed\n- **Doors** · Closed\n{% endif %}\n- **Windows** · Closed\n- **Glass break** · Clear\n- **Cameras** · No lab feed",
+              "grid_options": {
+                "columns": "full",
+                "rows": "auto"
+              }
+            },
+            {
+              "type": "conditional",
+              "conditions": [
+                {
+                  "condition": "state",
+                  "entity": "input_boolean.lab_alert",
+                  "state": "on"
+                }
+              ],
+              "card": {
+                "type": "shortcut",
+                "label": "1 lab advisory",
+                "icon": "mdi:alert-outline",
+                "tap_action": {
+                  "action": "navigate",
+                  "navigation_path": "/atomic-age-utility/maintenance"
+                },
+                "grid_options": {
+                  "columns": "full",
+                  "rows": 1
+                }
+              }
+            },
+            {
+              "type": "shortcut",
+              "label": "Security",
+              "icon": "mdi:shield-home",
+              "tap_action": {
+                "action": "navigate",
+                "navigation_path": "/atomic-age-utility/security"
+              },
+              "grid_options": {
+                "columns": "full",
+                "rows": 1
+              }
+            }
+          ]
+        }
+      ],
+      "header": {
+        "layout": "start",
+        "badges_position": "bottom",
+        "card": {
+          "type": "markdown",
+          "text_only": true,
+          "content": "# Kitchen\n\n`DOMESTIC CONTROL STATION` · Dashboard Lab"
+        }
+      },
+      "badges": [
+        {
+          "type": "entity",
+          "entity": "input_number.lab_temperature",
+          "name": "Room temperature",
+          "icon": "mdi:thermometer",
+          "show_name": true,
+          "show_state": true,
+          "show_icon": true,
+          "tap_action": {
+            "action": "navigate",
+            "navigation_path": "/atomic-age-utility/climate"
+          }
+        }
+      ]
+    },
+    {
+      "title": "Lighting",
+      "path": "lights",
+      "type": "sections",
+      "theme": "Atomic Age Utility",
+      "max_columns": 3,
+      "dense_section_placement": false,
+      "sections": [
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "type": "heading",
+              "heading": "Lighting Circuits",
+              "heading_style": "title",
+              "icon": "mdi:lightbulb-group"
+            },
+            {
+              "type": "tile",
+              "entity": "input_boolean.lab_light",
+              "name": "All kitchen lights",
+              "icon": "mdi:lightbulb",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "icon_tap_action": {
+                "action": "toggle"
+              },
+              "grid_options": {
+                "columns": "full"
+              }
+            }
+          ]
+        }
+      ],
+      "subview": true,
+      "back_path": "/atomic-age-utility/home"
+    },
+    {
+      "title": "Climate",
+      "path": "climate",
+      "type": "sections",
+      "theme": "Atomic Age Utility",
+      "max_columns": 3,
+      "dense_section_placement": false,
+      "sections": [
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "type": "heading",
+              "heading": "Comfort Dial",
+              "heading_style": "title",
+              "icon": "mdi:thermometer"
+            },
+            {
+              "type": "gauge",
+              "entity": "input_number.lab_temperature",
+              "name": "Kitchen temperature",
+              "needle": true,
+              "min": 45,
+              "max": 95,
+              "grid_options": {
+                "columns": "full",
+                "rows": 3
+              }
+            },
+            {
+              "type": "tile",
+              "entity": "input_number.lab_temperature",
+              "name": "Lab temperature",
+              "icon": "mdi:thermometer",
+              "tap_action": {
+                "action": "more-info"
+              },
+              "icon_tap_action": {
+                "action": "more-info"
+              },
+              "grid_options": {
+                "columns": "full"
+              }
+            }
+          ]
+        },
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "type": "heading",
+              "heading": "Temperature History",
+              "heading_style": "title",
+              "icon": "mdi:chart-line"
+            },
+            {
+              "type": "history-graph",
+              "entities": [
+                "input_number.lab_temperature"
+              ],
+              "hours_to_show": 6,
+              "grid_options": {
+                "columns": "full",
+                "rows": 4
+              }
+            }
+          ]
+        }
+      ],
+      "subview": true,
+      "back_path": "/atomic-age-utility/home"
+    },
+    {
+      "title": "Security",
+      "path": "security",
+      "type": "sections",
+      "theme": "Atomic Age Utility",
+      "max_columns": 3,
+      "dense_section_placement": false,
+      "sections": [
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "type": "heading",
+              "heading": "House Conditions",
+              "heading_style": "title",
+              "icon": "mdi:shield-home"
+            },
+            {
+              "type": "markdown",
+              "content": "{% if is_state('input_boolean.lab_alert', 'on') %}\n- **Home alarm** · Pending\n- **Doors** · Open\n{% else %}\n- **Home alarm** · Disarmed\n- **Doors** · Closed\n{% endif %}\n- **Windows** · Closed\n- **Glass break** · Clear\n- **Cameras** · No lab feed",
+              "grid_options": {
+                "columns": "full",
+                "rows": "auto"
+              }
+            },
+            {
+              "type": "shortcut",
+              "label": "Cameras",
+              "icon": "mdi:cctv",
+              "tap_action": {
+                "action": "navigate",
+                "navigation_path": "/atomic-age-utility/cameras"
+              },
+              "grid_options": {
+                "columns": "full",
+                "rows": 1
+              }
+            },
+            {
+              "type": "shortcut",
+              "label": "Simulate advisory",
+              "icon": "mdi:alert-outline",
+              "tap_action": {
+                "action": "perform-action",
+                "perform_action": "input_boolean.turn_on",
+                "target": {
+                  "entity_id": "input_boolean.lab_alert"
+                },
+                "confirmation": {
+                  "text": "Simulate an alarm advisory in the Dashboard Lab?"
+                }
+              },
+              "grid_options": {
+                "columns": "full",
+                "rows": 1
+              }
+            }
+          ]
+        }
+      ],
+      "subview": true,
+      "back_path": "/atomic-age-utility/home"
+    },
+    {
+      "title": "Cameras",
+      "path": "cameras",
+      "type": "sections",
+      "theme": "Atomic Age Utility",
+      "max_columns": 3,
+      "dense_section_placement": false,
+      "sections": [
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "type": "heading",
+              "heading": "Cameras",
+              "heading_style": "title",
+              "icon": "mdi:cctv"
+            },
+            {
+              "type": "markdown",
+              "content": "Dashboard Lab has no camera feeds.",
+              "grid_options": {
+                "columns": "full",
+                "rows": "auto"
+              }
+            }
+          ]
+        }
+      ],
+      "subview": true,
+      "back_path": "/atomic-age-utility/home"
+    },
+    {
+      "title": "Maintenance",
+      "path": "maintenance",
+      "type": "sections",
+      "theme": "Atomic Age Utility",
+      "max_columns": 3,
+      "dense_section_placement": false,
+      "sections": [
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "type": "heading",
+              "heading": "Local Advisories",
+              "heading_style": "title",
+              "icon": "mdi:wrench"
+            },
+            {
+              "type": "conditional",
+              "conditions": [
+                {
+                  "condition": "state",
+                  "entity": "input_boolean.lab_alert",
+                  "state": "on"
+                }
+              ],
+              "card": {
+                "type": "markdown",
+                "content": "**Lab advisory** · Simulated door status is open.",
+                "grid_options": {
+                  "columns": "full",
+                  "rows": "auto"
+                }
+              }
+            },
+            {
+              "type": "conditional",
+              "conditions": [
+                {
+                  "condition": "state",
+                  "entity": "input_boolean.lab_alert",
+                  "state": "off"
+                }
+              ],
+              "card": {
+                "type": "markdown",
+                "content": "No active advisories.",
+                "grid_options": {
+                  "columns": "full",
+                  "rows": "auto"
+                }
+              }
+            },
+            {
+              "type": "shortcut",
+              "label": "Clear lab advisory",
+              "icon": "mdi:check",
+              "tap_action": {
+                "action": "perform-action",
+                "perform_action": "input_boolean.turn_off",
+                "target": {
+                  "entity_id": "input_boolean.lab_alert"
+                }
+              },
+              "grid_options": {
+                "columns": "full",
+                "rows": 1
+              }
+            }
+          ]
+        }
+      ],
+      "subview": true,
+      "back_path": "/atomic-age-utility/home"
+    }
+  ]
+}
