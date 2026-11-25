@@ -1,0 +1,27 @@
+{
+  "title": "Master Bedroom",
+  "programs": [
+    {
+      "entity": "scene.master_bedroom_wake_up",
+      "label": "Wake Up",
+      "icon": "mdi:weather-sunset-up"
+    },
+    {
+      "entity": "scene.master_bedroom_shades",
+      "label": "Shades",
+      "icon": "mdi:blinds-horizontal"
+    }
+  ],
+  "alarm": "alarm_control_panel.home_alarm",
+  "doors": "group.doors",
+  "windows": "group.windows",
+  "glass_break": "group.glass_break_detectors",
+  "controls": [],
+  "lights": [],
+  "covers": [],
+  "media": [],
+  "cameras": [],
+  "advisories": [],
+  "temperature": null,
+  "climate": null
+}

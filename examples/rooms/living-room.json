@@ -1,0 +1,38 @@
+{
+  "title": "Living Room",
+  "programs": [
+    {
+      "entity": "scene.living_room_bright",
+      "label": "Bright",
+      "icon": "mdi:white-balance-sunny"
+    },
+    {
+      "entity": "scene.living_room_evening",
+      "label": "Evening",
+      "icon": "mdi:weather-sunset"
+    },
+    {
+      "entity": "scene.living_room_all_off",
+      "label": "All Off",
+      "icon": "mdi:power"
+    }
+  ],
+  "controls": [
+    {
+      "entity": "light.living_room_all_lights",
+      "label": "All living room lights",
+      "icon": "mdi:lightbulb-group"
+    }
+  ],
+  "climate": "climate.living_room",
+  "alarm": "alarm_control_panel.home_alarm",
+  "doors": "group.doors",
+  "windows": "group.windows",
+  "glass_break": "group.glass_break_detectors",
+  "lights": [],
+  "covers": [],
+  "media": [],
+  "cameras": [],
+  "advisories": [],
+  "temperature": null
+}

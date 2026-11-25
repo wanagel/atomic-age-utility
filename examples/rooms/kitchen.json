@@ -1,0 +1,34 @@
+{
+  "title": "Kitchen",
+  "assist": true,
+  "programs": [
+    {
+      "entity": "scene.kitchen_overhead_bright",
+      "label": "Bright",
+      "icon": "mdi:white-balance-sunny"
+    },
+    {
+      "entity": "scene.kitchen_all_off",
+      "label": "All Off",
+      "icon": "mdi:power"
+    }
+  ],
+  "controls": [
+    {
+      "entity": "light.kitchen_all_lights",
+      "label": "All kitchen lights",
+      "icon": "mdi:lightbulb-group"
+    }
+  ],
+  "alarm": "alarm_control_panel.home_alarm",
+  "doors": "group.doors",
+  "windows": "group.windows",
+  "glass_break": "group.glass_break_detectors",
+  "lights": [],
+  "covers": [],
+  "media": [],
+  "cameras": [],
+  "advisories": [],
+  "temperature": null,
+  "climate": null
+}

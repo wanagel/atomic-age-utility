@@ -1,0 +1,15 @@
+{
+  "title": "Sara’s Office",
+  "alarm": "alarm_control_panel.home_alarm",
+  "doors": "group.doors",
+  "windows": "group.windows",
+  "glass_break": "group.glass_break_detectors",
+  "controls": [],
+  "lights": [],
+  "covers": [],
+  "media": [],
+  "cameras": [],
+  "advisories": [],
+  "temperature": null,
+  "climate": null
+}
